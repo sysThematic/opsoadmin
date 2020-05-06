@@ -1,9 +1,5 @@
-FROM registry.redhat.io/rhscl/python-36-rhel7:latest
+FROM default-route-openshift-image-registry.apps.pcloudtest.finansbank.com.tr/openshift/python:3.6
 USER root
-RUN INSTALL_PKGS="libXrender.x86_64 libXrender-devel.x86_64" && \
-yum install -y yum-utils && \
-    prepare-yum-repositories rhel-server-rhscl-7-rpms && \
-    yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum -y clean all --enablerepo='*'
+RUN yum install -y "libXrender.x86_64 libXrender-devel.x86_64" && \
+yum -y clean all
 USER 1001
