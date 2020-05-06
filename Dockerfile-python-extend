@@ -1,4 +1,4 @@
-FROM default-route-openshift-image-registry.apps.pcloudtest.finansbank.com.tr/openshift/python:3.6
+FROM python:3.6
 USER root
 RUN yum install -y "libXrender.x86_64 libXrender-devel.x86_64" && \
 yum -y clean all
