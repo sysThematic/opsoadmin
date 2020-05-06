@@ -1,5 +1,9 @@
 FROM python:3.6
 USER root
-RUN yum install -y "libXrender.x86_64 libXrender-devel.x86_64" && \
-yum -y clean all
+RUN RUN INSTALL_PKGS="libXrender.x86_64 libXrender-devel.x86_64" && \
+yum install -y yum-utils && \
+    prepare-yum-repositories rhel-server-rhscl-7-rpms && \
+    yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum -y clean all --enablerepo='*'
 USER 1001
